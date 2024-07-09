@@ -181,8 +181,8 @@ void SolveEA::setAsCERESProblem()
     problem.SetParameterization(q_cap, local_parameterization);
 
     // setting the solver
-    Solver::Options options;
-        options.max_num_iterations = 25;
+    ceres::Solver::Options options;
+    options.max_num_iterations = 25;
 //    options.max_solver_time_in_seconds = 5;
     options.linear_solver_type = ceres::DENSE_QR;
     options.minimizer_progress_to_stdout = true;
@@ -194,8 +194,8 @@ void SolveEA::setAsCERESProblem()
 
 
 
-    Solver::Summary summary;
-    Solve(options, &problem, &summary);
+    ceres::Solver::Summary summary;
+    ceres::Solve(options, &problem, &summary);
     //    std::cout << summary.BriefReport() << "\n";
     std::cout << summary.FullReport() << "\n";
 
@@ -257,12 +257,12 @@ void SolveEA::_sampleCERESProblem()
 
 
     // setting up the solver
-    Solver::Options options;
+    ceres::Solver::Options options;
     options.max_num_iterations = 25;
     options.linear_solver_type = ceres::DENSE_QR;
     options.minimizer_progress_to_stdout = true;
-    Solver::Summary summary;
-    Solve(options, &problem, &summary);
+    ceres::Solver::Summary summary;
+    ceres::Solve(options, &problem, &summary);
     std::cout << summary.BriefReport() << "\n";
 
     cout << "final value of x_final=[\n";
